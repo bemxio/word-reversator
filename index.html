@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=0.9"/>
+        <title>Word Reversator</title>
+    </head>
+
+    <body>
+        <center>
+            <h1>Word Reversator (ver. 1.0)!</h1>
+            <p>Enter a piece of text and I will reverse the words in it!</p>
+
+            <form action="/" method="GET">
+                <label for="originalText"><b>Original text:</b></label><br/>
+                <textarea id="originalText" name="originalText" rows="6" cols="100"></textarea>
+
+                <br/><br/>
+
+                <label for="reversedText"><b>Reversed text:</b></label><br/>
+                <textarea id="reversedText" name="reversedText" rows="6" cols="100"></textarea>
+
+                <br/><br/>
+
+                <button id="reverseButton" type="submit" value="">Reverse</button>
+                <button type="reset">Reset</button>
+            </form>
+        </center>
+
+        <script>
+            function reverseWords(text) {
+                return text.split(" ").reverse().join(" ");
+            }
+
+            var params = new URLSearchParams(window.location.search);
+            var text;
+            
+            if (params.get("originalText")) {
+                text = params.get("originalText");
+
+                document.getElementById("originalText").value = text;
+                document.getElementById("reversedText").value = reverseWords(text);
+            } else if (params.get("reversedText")) {
+                text = params.get("reversedText");
+
+                document.getElementById("reversedText").value = text;
+                document.getElementById("originalText").value = reverseWords(text);
+            }
+
+        </script>
+    </body>
+</html>
